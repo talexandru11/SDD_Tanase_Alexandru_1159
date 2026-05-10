@@ -11,7 +11,7 @@ typedef struct Nod {
     struct Nod* next;
 } Nod;
 
-Nod* tabelaHash[SIZE];
+Nod* hashTable[SIZE];
 
 int hashFunction(int cheie) {
     return cheie % SIZE;
@@ -30,15 +30,15 @@ void adauga(int cheie, const char valoare[]) {
     strncpy(nou->valoare, valoare, MAX_VALOARE - 1);
     nou->valoare[MAX_VALOARE - 1] = '\0';
 
-    nou->next = tabelaHash[poz];
-    tabelaHash[poz] = nou;
+    nou->next = hashTable[poz];
+    hashTable[poz] = nou;
 }
 
 void afisare() {
     for (int i = 0; i < SIZE; i++) {
         printf("%d -> ", i);
 
-        Nod* p = tabelaHash[i];
+        Nod* p = hashTable[i];
 
         while (p != NULL) {
             printf("(%d %s) ", p->cheie, p->valoare);
@@ -51,7 +51,7 @@ void afisare() {
 
 void eliberareMemorie() {
     for (int i = 0; i < SIZE; i++) {
-        Nod* p = tabelaHash[i];
+        Nod* p = hashTable[i];
 
         while (p != NULL) {
             Nod* temp = p;
@@ -59,13 +59,13 @@ void eliberareMemorie() {
             free(temp);
         }
 
-        tabelaHash[i] = NULL;
+        hashTable[i] = NULL;
     }
 }
 
 int main() {
     for (int i = 0; i < SIZE; i++) {
-        tabelaHash[i] = NULL;
+        hashTable[i] = NULL;
     }
 
     adauga(1, "Roman");
