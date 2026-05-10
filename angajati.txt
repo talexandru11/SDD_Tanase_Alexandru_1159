@@ -1,0 +1,5 @@
+Alex, 24, 3500
+Bogdan, 25, 4500
+Cristi, 26, 5500
+Daniel, 27, 6500
+Emil, 50, 15000
